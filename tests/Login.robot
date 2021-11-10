@@ -41,4 +41,31 @@ Incorrect Email
     Go To Login Page
     Fill Credentials        ${user}
     Submit Credentials
-    Should Be Type Email     
+    Should Be Type Email 
+
+Required Email
+    [Tags]          req_email
+    ${user}         Create Dictionary       email=       password=abc123
+
+    Go To Login Page
+    Fill Credentials        ${user}
+    Submit Credentials
+    Empty Field       E-mail obrigatório
+
+Required Password
+    [Tags]          req_pass
+    ${user}         Create Dictionary       email=marcio.peneluca@hotmail.com       password=
+
+    Go To Login Page
+    Fill Credentials        ${user}
+    Submit Credentials
+    Empty Field       Senha obrigatória
+
+Required Fields
+    [Tags]          req_fields
+    ${user}                 Create Dictionary       email=      password=       msg1=E-mail obrigatório       msg2=Senha obrigatória
+      
+    Go To Login Page
+    Fill Credentials            ${user}
+    Submit Credentials
+    Empty Required Fields       ${user}

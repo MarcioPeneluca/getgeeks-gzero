@@ -27,6 +27,7 @@ User Should Be Registered
 
     Wait For Elements State     ${expect_message}     visible     5
 
+
 Alert Span Should Be 
     [Arguments]     ${expect_alert}
 
