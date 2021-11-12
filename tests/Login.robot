@@ -45,27 +45,29 @@ Incorrect Email
 
 Required Email
     [Tags]          req_email
-    ${user}         Create Dictionary       email=       password=abc123
+    ${user}         Create Dictionary       email=${EMPTY}      password=abc123
 
     Go To Login Page
     Fill Credentials        ${user}
     Submit Credentials
-    Empty Field       E-mail obrigatório
+    Alert Span Should Be      E-mail obrigatório
 
-Required Password
+Required Pass
     [Tags]          req_pass
-    ${user}         Create Dictionary       email=marcio.peneluca@hotmail.com       password=
+    ${user}         Create Dictionary       email=marcio.peneluca@hotmail.com       password=${EMPTY}
 
     Go To Login Page
     Fill Credentials        ${user}
     Submit Credentials
-    Empty Field       Senha obrigatória
+    Alert Span Should Be       Senha obrigatória
 
 Required Fields
     [Tags]          req_fields
-    ${user}                 Create Dictionary       email=      password=       msg1=E-mail obrigatório       msg2=Senha obrigatória
-      
+
+    @{expected_alerts}      Create List
+    ...                     E-mail obrigatório
+    ...                     Senha obrigatória
+
     Go To Login Page
-    Fill Credentials            ${user}
     Submit Credentials
-    Empty Required Fields       ${user}
+    Alert Spans Should Be       ${expected_alerts}

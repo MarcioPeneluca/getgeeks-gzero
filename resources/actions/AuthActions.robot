@@ -32,22 +32,3 @@ User Should Be Logged In
 
 Should Be Type Email
     Get Property       ${INPUT_EMAIL}        type        equal       email
-
-
-Empty Field
-    [Arguments]     ${expect_message}
-
-    ${campo_mensagem}       Set Variable    css=.error >> text=${expect_message}
-
-    Wait For Elements State     css=.login-form     visible     5
-    Get Text        ${campo_mensagem}       equal       ${expect_message}
-
-Empty Required Fields
-    [Arguments]     ${user}
-
-    ${msg_email}       Set Variable    css=.error >> text=${user}[msg1]
-    ${msg_pass}        Set Variable    css=.error >> text=${user}[msg2]
-    
-    Wait For Elements State     css=.login-form     visible     5
-    Get Text        ${msg_email}       equal       ${user}[msg1]
-    Get Text        ${msg_pass}        equal       ${user}[msg2]
